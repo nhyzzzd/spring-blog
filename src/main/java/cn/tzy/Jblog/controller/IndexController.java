@@ -76,6 +76,13 @@ public class IndexController {
         }else {
             model.addAttribute("create",0);
         }
+        // 增加登录和登出链接
+        if(user!=null){
+            model.addAttribute("login",1);
+            model.addAttribute("username",user.getName());
+        }else{
+            model.addAttribute("login",0);
+        }
         pagination.set("current",1);
         pagination.set("nextPage",2);
         pagination.set("lastPage",count/4+1);
@@ -153,7 +160,6 @@ public class IndexController {
             if (StringUtils.isNotBlank(next)){
                 return "redirect:"+next;
             }
-
             return "redirect:/";
         }else {
             model.addAttribute("msg", map.get("msg"));
